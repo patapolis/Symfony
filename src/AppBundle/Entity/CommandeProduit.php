@@ -1,0 +1,122 @@
+<?php
+
+
+namespace AppBundle\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="CommandeProduit")
+ */
+class CommandeProduit
+{
+
+
+    /**
+   * @ORM\Column(name="id", type="integer")
+   * @ORM\Id
+   * @ORM\GeneratedValue(strategy="AUTO")
+   */
+  private $id;
+        
+      /**
+     * @ORM\ManyToOne(targetEntity="Produit", inversedBy="CommandeProduits")
+     * @ORM\JoinColumn(name="produit_id", referencedColumnName="id")
+     */
+    private $produit;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Commande", inversedBy="commandeproduits")
+     * @ORM\JoinColumn(name="commande_id", referencedColumnName="ID_COMMANDE")
+     */
+    private $commande;
+
+     /**
+    * @ORM\Column(type="integer")
+    */
+     private $nmbProduit;
+
+  
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nmbProduit
+     *
+     * @param integer $nmbProduit
+     *
+     * @return CommandeProduit
+     */
+    public function setNmbProduit($nmbProduit)
+    {
+        $this->nmbProduit = $nmbProduit;
+
+        return $this;
+    }
+
+    /**
+     * Get nmbProduit
+     *
+     * @return integer
+     */
+    public function getNmbProduit()
+    {
+        return $this->nmbProduit;
+    }
+
+    /**
+     * Set produit
+     *
+     * @param \AppBundle\Entity\Produit $produit
+     *
+     * @return CommandeProduit
+     */
+    public function setProduit(\AppBundle\Entity\Produit $produit = null)
+    {
+        $this->produit = $produit;
+
+        return $this;
+    }
+
+    /**
+     * Get produit
+     *
+     * @return \AppBundle\Entity\Produit
+     */
+    public function getProduit()
+    {
+        return $this->produit;
+    }
+
+    /**
+     * Set commande
+     *
+     * @param \AppBundle\Entity\Commande $commande
+     *
+     * @return CommandeProduit
+     */
+    public function setCommande(\AppBundle\Entity\Commande $commande = null)
+    {
+        $this->commande = $commande;
+
+        return $this;
+    }
+
+    /**
+     * Get commande
+     *
+     * @return \AppBundle\Entity\Commande
+     */
+    public function getCommande()
+    {
+        return $this->commande;
+    }
+}
